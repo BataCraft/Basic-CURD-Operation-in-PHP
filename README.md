@@ -1,1 +1,47 @@
 # Basic-CURD-Operation-in-PHP
+
+#Create DATABASES
+----> CREATE DATABASE bookstore;
+
+----> use bookstore;
+
+# CREATE TABLE:
+
+----> CREATE TABLE admin(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50) NOT NULL,
+username VARCHAR(50) UNIQUE NOT NULL,
+email VARCHAR(50) UNIQUE NOT NULL,
+password VARCHAR(50) NOT NULL,
+role VARCHAR(20) DEFAULT 'user',
+created_at DATETIME,
+updated_at DATETIME NOT NULL,
+status BOOLEAN DEFAULT 0
+
+);
+
+----> CREATE TABLE book_category(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50) NOT NULL,
+created_at DATETIME,
+updated_at DATETIME NOT NULL,
+status BOOLEAN DEFAULT 0,
+create_by INT NOT NULL FOREIGN KEY REFERENCES admin(id),
+updated_by INT NULL FOREIGN KEY REFERENCES admin(id)
+);
+
+----> CREATE TABLE book(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50) NOT NULL,
+created_at DATETIME,
+updated_at DATETIME NOT NULL,
+status BOOLEAN DEFAULT 0,
+publishdate DATE NOT NULL,
+author VARCHAR(50) NOT NULL,
+publiation VARCHAR(100) NOT NULL,
+price DECIMAL NOT NULL,
+no_of_pages INT NOT NULL,
+description TEXT  NULL,
+create_by INT NOT NULL FOREIGN KEY REFERENCES admin(id),
+updated_by INT NULL FOREIGN KEY REFERENCES admin(id)
+);
